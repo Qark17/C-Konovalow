@@ -2,11 +2,11 @@
 
 Person::Person()
 {
-	cout << "Ââåäèòå ôàìèëèþ" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ" << endl;
 	cin >> lastName;
-	cout << "Ââåäèòå èìÿ" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ" << endl;
 	cin >> firstName;
-	cout << "Ââåäèòå îò÷åñòâî" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¾Ñ‚Ñ‡ÐµÑÑ‚Ð²Ð¾" << endl;
 	cin >> patronymic;
 }
 
@@ -25,7 +25,7 @@ void Person::Show()
 
 void Person::ShowFormal()
 {
-	cout << "ÔÈÎ:" << endl;
+	cout << "Ð¤Ð˜Ðž:" << endl;
 	cout << lastName << endl
 	cout << firstName << endl;
 	cout << patronymic << endl;

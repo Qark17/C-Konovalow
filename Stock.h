@@ -12,5 +12,5 @@ public:
 	Person();
 	Person(const string& ln, const string& fn, const string& pn);
 	void Show(); //lastName + firstName
-	void ShowFormal(); //ิศฮ
+	void ShowFormal();
 };
