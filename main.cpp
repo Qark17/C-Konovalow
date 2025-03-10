@@ -1,11 +1,10 @@
 #include <iostream>
+#include <locale>
 #include "Stock.h"
-#include <windows.h>
 
 int main()
 {
-	SetConsoleOutputCP(1251);
-	SetConsoleCP(1251);
+	setlocale(LC_ALL, "Russian");
 	Person person;
 	person.Show();
 	person.ShowFormal();

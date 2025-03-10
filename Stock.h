@@ -1,5 +1,5 @@
 #pragma once
-#include <string.h>
+#include <String.h>
 #include <iostream>
 using namespace std;
 class Person
