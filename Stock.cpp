@@ -1,27 +1,24 @@
 #include "Stock.h"
 
 Person::Person()
-{}
-
-Person::Person(const string & ln, const string & fn, const string & pn)
 {
 	lastName = "";
 	firstName = "";
 	patronymic = "";
 }
 
+Person::Person(const string & ln, const string& fn, const string& pn)
+{
+	lastName = ln;
+	firstName = fn;
+	patronymic = pn;
+}
+
 void Person::Show()
 {
-	cout << "Введите фамилию: " << endl;
-	cin >> lastName;
-	cout << "Введите имя: " << endl;
-	cin >> firstName;
-	cout << lastName << " " << firstName << endl;
+	cout << Person::lastName << " " << Person::firstName << endl;
 }
 void Person::ShowFormal()
 {
-	
-	cout << "Введите отчество: " << endl;
-	cin >> patronymic;
-	cout << "ФИО:" << lastName << " " << firstName << " " << patronymic << " " << endl;
+	cout << Person::lastName << " " << Person::firstName << " " << Person::patronymic << " " << endl;
 }
