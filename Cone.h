@@ -8,15 +8,14 @@ namespace CONE
 	{
 	private:
 		Point coneCentre;
+		Point pointN;
 		double high;
 		double radius;
 	public:
 		double getHigh() const;
 		double getRadius() const;
-		Cone();
-		Cone(double radius, double high);
-		double totalSurfaceAreaCone(double radius, double high) const;
-		void pointOnCone(Point& coneCentre, Point& pointN, double radius, double high) const;
+		Cone(const Point& coneCentre, const double radius, const double high);
+		double totalSurfaceAreaCone() const;
+		bool pointOnCone(const Point& pointN) const;
 	};
 }
-bool check(double num1, double num2);

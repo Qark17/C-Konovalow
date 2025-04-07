@@ -2,6 +2,7 @@
 #include<string>
 #include"Point.h"
 #include"Cone.h"
+#include<windows.h>
 
 using namespace std;
 
@@ -9,28 +10,26 @@ double getCoordinate(std::string message);
 
 int main()
 {
-	setlocale(LC_ALL, "RUSSIAN");
-	double radius;
-	double high;
-	auto x = getCoordinate("¬ведите координату центра конуса x");
-	auto y = getCoordinate("¬ведите координату центра конуса y");
-	auto z = getCoordinate("¬ведите координату центра конуса z");
-	Point coneCentre(x, y, z);
+	//setlocale(LC_ALL, "RU");
+	double radius = getCoordinate("Введите радиус основания конуса: ");
+	double high = getCoordinate("Введите высоту конуса: ");
 
-	cout << "¬ведите радиус основани¤ конуса: ";
-	cin >> radius;
-	cout << "¬ведите высоту конуса: ";
-	cin >> high;
+	cout << "Введите координаты центра основания конуса:" << endl;
+	Point coneCentre = getPoint();
 
-	CONE::Cone cone(radius, high);
-	cout << "ѕлощадь полной поверхности конуса = " << cone.totalSurfaceAreaCone(radius, high) << endl;
+	CONE::Cone cone(coneCentre, radius, high);
+	cout << "Площадь полной поверхности конуса = " << cone.totalSurfaceAreaCone() << endl;
+	cout << "Введите координаты новой точки для проверки:" << endl;
+	Point pointN = getPoint();
 
-	auto xN = getCoordinate("¬ведите координату x");
-	auto yN = getCoordinate("¬ведите координату y");
-	auto zN = getCoordinate("¬ведите координату z");
-	Point pointN(xN, yN, zN);
-
-	cone.pointOnCone(coneCentre, pointN, radius, high);
+	if (cone.pointOnCone(pointN))
+	{
+		cout << "Точка лежит на поверхности конуса";
+	}
+	else
+	{
+		cout << "Точка не лежит на поверхности конуса";
+	}
 	return 0;
 }
 
@@ -38,6 +37,10 @@ double getCoordinate(std::string message)
 {
 	cout << message << endl;
 	double coordinate = 0.0;
-	cin >> coordinate;
+	if (!(cin >> coordinate) || coordinate - 0 <= std::numeric_limits<double>::epsilon())
+	{
+		cerr << "Вводить только положительные числа!" << endl;
+		exit(1);
+	}
 	return coordinate;
 }

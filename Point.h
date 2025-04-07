@@ -14,3 +14,4 @@ public:
 
 bool operator==(Point& point1, Point& point2);
 bool operator!=(Point& point1, Point& point2);
+Point getPoint();

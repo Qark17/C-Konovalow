@@ -1,8 +1,10 @@
 #include <limits>
 #include <cmath>
 #include "Point.h"
+#include <iostream>
+using namespace std;
 
-Point::Point(double x, double y, double z) : x{ x }, y{ y }, z{ z }
+Point::Point(double x, double y, double z): x{x}, y{y}, z{z}
 {
 	x = y = z = 0.0;
 }
@@ -29,4 +31,16 @@ bool operator==(Point& point1, Point& point2)
 bool operator!=(Point& point1, Point& point2)
 {
 	return !(point1 == point2);
+}
+
+Point getPoint()
+{
+	double x, y, z;
+	cout << "Введите x: ";
+	cin >> x;
+	cout << "Введите y: ";
+	cin >> y;
+	cout << "Введите z: ";
+	cin >> z;
+	return Point(x, y, z);
 }
