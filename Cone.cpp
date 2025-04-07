@@ -19,8 +19,7 @@ CONE::Cone::Cone(const Point& coneCentre, const double radius, const double high
 {
 	if ((radius - 0 <= std::numeric_limits<double>::epsilon()) || (high - 0 <= std::numeric_limits<double>::epsilon()))
 	{
-		std::cerr << "И радиус, и высота должны быть строго положительными!" << std::endl;
-		std::exit(1);
+		std::cout << "И радиус, и высота должны быть строго положительными!" << std::endl;
 	}
 }
 
