@@ -30,14 +30,9 @@ double CONE::Cone::totalSurfaceAreaCone() const
 
 bool CONE::Cone::pointOnCone(const Point& pointN) const
 {
-	double num1 = sqrt(pow((coneCentre.getX() - pointN.getX()), 2) + pow((coneCentre.getY() - pointN.getY()), 2));
-	double num2 = radius * (coneCentre.getZ() - pointN.getZ()) / high;
-	if (num1 - num2 <= std::numeric_limits<double>::epsilon())
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	double num1 = (pow(coneCentre.getX()-pointN.getX(),2) + pow(coneCentre.getY()-pointN.getY(),2)) / pow(radius,2) 
+		- pow(coneCentre.getZ()-pointN.getZ()-high,2) / pow(high,2);
+	double num2 = pow(coneCentre.getX()-pointN.getX(),2) + pow(coneCentre.getY()-pointN.getY(),2) 
+		+ pow(coneCentre.getZ()-pointN.getZ(),2) - pow(radius,2);
+	return (num1 - 0 <= std::numeric_limits<double>::epsilon() || num2 - 0 <= std::numeric_limits<double>::epsilon());
 }

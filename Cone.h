@@ -8,7 +8,6 @@ namespace CONE
 	{
 	private:
 		Point coneCentre;
-		Point pointN;
 		double high;
 		double radius;
 	public:

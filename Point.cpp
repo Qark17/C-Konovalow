@@ -32,15 +32,3 @@ bool operator!=(Point& point1, Point& point2)
 {
 	return !(point1 == point2);
 }
-
-Point getPoint()
-{
-	double x, y, z;
-	cout << "Введите x: ";
-	cin >> x;
-	cout << "Введите y: ";
-	cin >> y;
-	cout << "Введите z: ";
-	cin >> z;
-	return Point(x, y, z);
-}

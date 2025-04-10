@@ -7,6 +7,7 @@
 using namespace std;
 
 double getCoordinate(std::string message);
+Point getPoint();
 
 int main()
 {
@@ -43,4 +44,16 @@ double getCoordinate(std::string message)
 		exit(1);
 	}
 	return coordinate;
+}
+
+Point getPoint()
+{
+	double x, y, z;
+	cout << "Введите x: ";
+	cin >> x;
+	cout << "Введите y: ";
+	cin >> y;
+	cout << "Введите z: ";
+	cin >> z;
+	return Point(x, y, z);
 }
