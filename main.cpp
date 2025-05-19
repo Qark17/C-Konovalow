@@ -1,59 +1,71 @@
-#include<iostream>
-#include<string>
-#include"Point.h"
-#include"Cone.h"
-#include<windows.h>
-
+#include <iostream>
+#include <limits>
+#include <locale>
+#include "../PerMille/Piquet.h"
+#include "../PerMille/PerMille.h"
 using namespace std;
-
-double getCoordinate(std::string message);
-Point getPoint();
-
+/**
+* @brief считывает вещественное число
+* @param message - сообщение
+* @return вещественное число
+*/
+double getValue(string message);
+/**
+* @brief считывает вещественное число
+* @param message - сообщение
+* @return вещественное число
+*/
+int getInt(string message);
+/**
+* @brief составляет Пикет
+* @param message - сообщение
+* @return Пикет
+*/
+Piquet getPiquet(string message);
+/**
+* @brief Точка входа в программу
+* @return 0 в случае успеха
+*/
 int main()
 {
-	//setlocale(LC_ALL, "RU");
-	double radius = getCoordinate("Введите радиус основания конуса: ");
-	double high = getCoordinate("Введите высоту конуса: ");
-
-	cout << "Введите координаты центра основания конуса:" << endl;
-	Point coneCentre = getPoint();
-
-	CONE::Cone cone(coneCentre, radius, high);
-	cout << "Площадь полной поверхности конуса = " << cone.totalSurfaceAreaCone() << endl;
-	cout << "Введите координаты новой точки для проверки:" << endl;
-	Point pointN = getPoint();
-
-	if (cone.pointOnCone(pointN))
-	{
-		cout << "Точка лежит на поверхности конуса";
-	}
-	else
-	{
-		cout << "Точка не лежит на поверхности конуса";
-	}
+	int perMille = getInt("Введите значение уклона: ");
+	Piquet startPiq = getPiquet("Введите начальный пикет");
+	Piquet endPiq = getPiquet("Введите конечный пикет");
+	PerMille dif = PerMille(perMille, startPiq, endPiq);
+	cout << dif;
 	return 0;
 }
 
-double getCoordinate(std::string message)
+Piquet getPiquet(string message)
 {
 	cout << message << endl;
-	double coordinate = 0.0;
-	if (!(cin >> coordinate) || coordinate - 0 <= std::numeric_limits<double>::epsilon())
-	{
-		cerr << "Вводить только положительные числа!" << endl;
-		exit(1);
-	}
-	return coordinate;
+	int n = getInt("пикет:");
+	double s = getValue("смещение:");
+	int l = getValue("длину пикета");
+	return Piquet(n, s, l);
 }
 
-Point getPoint()
+double getValue(string message)
 {
-	double x, y, z;
-	cout << "Введите x: ";
-	cin >> x;
-	cout << "Введите y: ";
-	cin >> y;
-	cout << "Введите z: ";
-	cin >> z;
-	return Point(x, y, z);
+	cout << message << endl;
+	double value = 0.0;
+	cin >> value;
+	if (cin.fail() || value < 0.0)
+	{
+		cout << "Вводить только положительные числа!" << endl;
+		exit(1);
+	}
+	return value;
+}
+int getInt(string message)
+{
+	cout << message << endl;
+	int value = 0;
+	cin >> value;
+	if (cin.fail())
+	{
+		cout << "Ошибка ввода!" << endl;
+		exit(1);
+	}
+	return value;
 }
