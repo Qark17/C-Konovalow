@@ -1,63 +1,69 @@
+#include "D:\VScode\Code on C++\Сredit codes\C++ Code 4\Stack\Stack\Stack.h"
 #include <iostream>
-#include <limits>
-#include <locale>
-#include "../PerMille/Piquet.h"
-#include "../PerMille/PerMille.h"
 using namespace std;
 /**
 * @brief считывает вещественное число
 * @param message - сообщение
 * @return вещественное число
 */
-double getValue(string message);
+int getValueInt(string message);
 /**
 * @brief считывает вещественное число
 * @param message - сообщение
 * @return вещественное число
 */
-int getInt(string message);
+size_t getValue(string message);
 /**
-* @brief составляет Пикет
-* @param message - сообщение
-* @return Пикет
+* @brief множественный выбор
 */
-Piquet getPiquet(string message);
+enum Action
+{
+	push = 1,
+	pop  = 2,
+	peek = 3
+};
 /**
 * @brief Точка входа в программу
 * @return 0 в случае успеха
 */
 int main()
 {
-	int perMille = getInt("Введите значение уклона: ");
-	Piquet startPiq = getPiquet("Введите начальный пикет");
-	Piquet endPiq = getPiquet("Введите конечный пикет");
-	PerMille dif = PerMille(perMille, startPiq, endPiq);
-	cout << dif;
+	Stack normStack;
+	size_t lengh = getValue("Введите размер стэка: ");
+	normStack.cinStack(lengh);
+	normStack.coutStack();
+	cout << "Какое действие выполнить со стэком? Добавить элемент - введите " << Action::push << 
+		", удалить элемент - " << Action::pop << ", посмотреть последний элемент - " << Action::peek;
+	int choice = getValueInt("");
+	switch ((enum Action)choice)
+	{
+	case Action::push:
+	{
+		int new_elmnt = getValueInt("Введите новый элемент: ");
+		normStack.push(new_elmnt);
+		break;
+	}
+	case Action::pop:
+	{
+		normStack.pop();
+		break;
+	}
+	case Action::peek:
+	{
+		cout << "Головной элемент: " << normStack.peek();
+		break;
+	}
+	default:
+	{
+		normStack.~Stack();
+		exit(1);
+	}
+	}
+	normStack.coutStack();
 	return 0;
 }
 
-Piquet getPiquet(string message)
-{
-	cout << message << endl;
-	int n = getInt("пикет:");
-	double s = getValue("смещение:");
-	int l = getValue("длину пикета");
-	return Piquet(n, s, l);
-}
-
-double getValue(string message)
-{
-	cout << message << endl;
-	double value = 0.0;
-	cin >> value;
-	if (cin.fail() || value < 0.0)
-	{
-		cout << "Вводить только положительные числа!" << endl;
-		exit(1);
-	}
-	return value;
-}
-int getInt(string message)
+int getValueInt(string message)
 {
 	cout << message << endl;
 	int value = 0;
@@ -65,6 +71,18 @@ int getInt(string message)
 	if (cin.fail())
 	{
 		cout << "Ошибка ввода!" << endl;
+		exit(1);
+	}
+	return value;
+}
+size_t getValue(string message)
+{
+	cout << message << endl;
+	int value = 0;
+	cin >> value;
+	if (cin.fail() || value <= 0)
+	{
+		cout << "Длина строго положительна!" << endl;
 		exit(1);
 	}
 	return value;
